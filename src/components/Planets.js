@@ -20,7 +20,7 @@ const Planets = () => {
             <h2>Planets</h2>
             <div className="row">
                 {planets.map(planet => (
-                    <Card key={planet.uid} item={planet} addFavorite={addFavorite} />
+                    <Card key={planet.uid} item={planet} addFavorite={addFavorite} type="planet" />
                 ))}
             </div>
         </div>

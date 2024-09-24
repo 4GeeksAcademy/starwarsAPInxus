@@ -3,7 +3,7 @@ import { FavoritesContext } from '../context/FavoritesContext';
 import Card from './Card';
 
 const Vehicles = () => {
-    const [Vehicles, setVehicles] = useState([]);
+    const [vehicles, setVehicles] = useState([]);
     const { addFavorite } = useContext(FavoritesContext);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const Vehicles = () => {
             <h2>Vehicles</h2>
             <div className="row">
                 {vehicles.map(vehicle => (
-                    <Card key={vehicle.uid} item={vehicle} addFavorite={addFavorite} />
+                    <Card key={vehicle.uid} item={vehicle} addFavorite={addFavorite} type="vehicle" />
                 ))}
             </div>
         </div>

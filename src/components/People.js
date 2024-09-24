@@ -20,7 +20,7 @@ const People = () => {
             <h2>People</h2>
             <div className="row">
                 {people.map(person => (
-                    <Card key={person.uid} item={person} addFavorite={addFavorite} />
+                    <Card key={person.uid} item={person} addFavorite={addFavorite} type="person" />
                 ))}
             </div>
         </div>
