@@ -1,19 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { FavoritesProvider } from './context/FavoritesContext';
-import Home from './components/Home';
-import Details from './components/Details';
-import { Navbar } from './components/Navbar';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { FavoritesProvider } from '../context/FavoritesContext';
+import Home from '../components/Home';
+import Details from '../components/Details';
+import Navbar from '../components/Navbar';
 
 const App = () => {
     return (
         <FavoritesProvider>
             <Router>
                 <Navbar />
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/details/:id" component={Details} />
-                </Switch>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/details/:id" element={<Details />} />
+                </Routes>
             </Router>
         </FavoritesProvider>
     );
