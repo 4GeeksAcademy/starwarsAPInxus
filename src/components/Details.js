@@ -1,30 +1,40 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-const Details = ({ match }) => {
+const Details = () => {
+    const { id } = useParams(); // Get the ID from the URL
     const [item, setItem] = useState(null);
-    const { id } = match.params;
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch(`https://www.swapi.tech/api/people/${id}`);
+        const fetchDetails = async () => {
+            const response = await fetch(`https://www.swapi.tech/api/planets/${id}`);
             const data = await response.json();
-            setItem(data.result.properties);
+            setItem(data.result); // Adjust based on response structure
+            setLoading(false);
         };
-        fetchData();
+
+        fetchDetails().catch(console.error);
     }, [id]);
 
-    if (!item) return <div>Loading...</div>;
+    if (loading) return <div>Loading...</div>;
 
     return (
         <div className="container">
             <h2>{item.name}</h2>
-            <p>Height: {item.height}</p>
-            <p>Mass: {item.mass}</p>
-            <p>Hair Color: {item.hair_color}</p>
-            <p>Skin Color: {item.skin_color}</p>
-            <p>Eye Color: {item.eye_color}</p>
-            <p>Birth Year: {item.birth_year}</p>
-            <p>Gender: {item.gender}</p>
+            <div className="card">
+                <img
+                    src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+                    alt={item.name}
+                    className="card-img-top"
+                />
+                <div className="card-body">
+                    <p><strong>Diameter:</strong> {item.diameter}</p>
+                    <p><strong>Climate:</strong> {item.climate}</p>
+                    <p><strong>Terrain:</strong> {item.terrain}</p>
+                    {/* Add more properties as needed */}
+                </div>
+            </div>
         </div>
     );
 };

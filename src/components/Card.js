@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Card = ({ item, addFavorite, type }) => {
     // Function to handle adding to favorites
@@ -20,6 +21,9 @@ const Card = ({ item, addFavorite, type }) => {
                         {type === 'vehicle' && <span>Model: {item.model}</span>}
                         {type === 'people' && <span>Height: {item.height}</span>}
                     </p>
+                    <Link to={`/details/${item.uid}`} className="btn btn-info">
+                        View Details
+                    </Link>
                     <button className="btn btn-primary" onClick={handleAddFavorite}>
                         Add to Favorites
                     </button>
