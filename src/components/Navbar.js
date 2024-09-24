@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useFavorites } from '../context/FavoritesContext';
+import { FavoritesContext } from '../context/FavoritesContext';
 
-export const Navbar = () => {
-    const { favorites } = useFavorites();
+const Navbar = () => {
+    const { favorites } = useContext(FavoritesContext);
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link className="navbar-brand" to="/">Star Wars</Link>
+            <Link className="navbar-brand" to="/">Star Wars API</Link>
             <div className="collapse navbar-collapse">
-                <ul className="navbar-nav ml-auto">
+                <ul className="navbar-nav">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/">Home</Link>
+                        <Link className="nav-link" to="/people">People</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/planets">Planets</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/vehicles">Vehicles</Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/favorites">Favorites ({favorites.length})</Link>
@@ -22,3 +28,4 @@ export const Navbar = () => {
     );
 };
 
+export default Navbar;

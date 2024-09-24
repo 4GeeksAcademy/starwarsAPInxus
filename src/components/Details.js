@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import { useFavorites } from '../context/FavoritesContext';
 
-const Details = () => {
-    const { id } = useParams();
+const Details = ({ match }) => {
     const [item, setItem] = useState(null);
-    const { addFavorite } = useFavorites();
+    const { id } = match.params;
 
     useEffect(() => {
-        const fetchItem = async () => {
-            const response = await axios.get(`https://swapi.tech/api/people/${id}`);
-            setItem(response.data.result);
+        const fetchData = async () => {
+            const response = await fetch(`https://www.swapi.tech/api/people/${id}`);
+            const data = await response.json();
+            setItem(data.result.properties);
         };
-        fetchItem();
+        fetchData();
     }, [id]);
 
     if (!item) return <div>Loading...</div>;
@@ -21,9 +18,13 @@ const Details = () => {
     return (
         <div className="container">
             <h2>{item.name}</h2>
-            <img src={`https://starwars-visualguide.com/assets/img/characters/${item.uid}.jpg`} alt={item.name} />
-            <p>{item.description || 'No description available.'}</p>
-            <button onClick={() => addFavorite(item)} className="btn btn-primary">Add to Favorites</button>
+            <p>Height: {item.height}</p>
+            <p>Mass: {item.mass}</p>
+            <p>Hair Color: {item.hair_color}</p>
+            <p>Skin Color: {item.skin_color}</p>
+            <p>Eye Color: {item.eye_color}</p>
+            <p>Birth Year: {item.birth_year}</p>
+            <p>Gender: {item.gender}</p>
         </div>
     );
 };
