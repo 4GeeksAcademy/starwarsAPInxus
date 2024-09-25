@@ -18,7 +18,7 @@ const App = () => {
                     <Route path="/planets" element={<Planets />} />
                     <Route path="/vehicles" element={<Vehicles />} />
                     <Route path="/favorites" element={<Favorites />} />
-                    <Route path="/details/:id" element={<Details />} />
+                    <Route path="/details/:type/:id" element={<Details />} />
                     <Route path="/" element={<People />} />
                 </Routes>
             </Router>
@@ -27,4 +27,3 @@ const App = () => {
 };
 
 export default App;
-git add . 

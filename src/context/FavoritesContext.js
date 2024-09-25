@@ -6,7 +6,11 @@ export const FavoritesProvider = ({ children }) => {
     const [favorites, setFavorites] = useState([]);
 
     const addFavorite = (item) => {
-        setFavorites((prevFavorites) => [...prevFavorites, item]);
+        const isFavorite=favorites.some(element => element.name == item.name)
+        if (!isFavorite) {
+            setFavorites((prevFavorites) => [...prevFavorites, item]);
+        }
+       
     };
 
     const removeFavorite = (item) => {

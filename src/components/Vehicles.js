@@ -20,7 +20,7 @@ const Vehicles = () => {
             <h2>Vehicles</h2>
             <div className="row">
                 {vehicles.map(vehicle => (
-                    <Card key={vehicle.uid} item={vehicle} addFavorite={addFavorite} type="vehicle" />
+                    <Card key={vehicle.uid} item={vehicle} addFavorite={addFavorite} type="vehicles" />
                 ))}
             </div>
         </div>

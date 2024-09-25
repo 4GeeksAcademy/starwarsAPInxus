@@ -11,7 +11,7 @@ const Favorites = () => {
             <div className="row">
                 {favorites.length > 0 ? (
                     favorites.map(item => (
-                        <Card key={item.uid} item={item} removeFavorite={removeFavorite} />
+                        <Card key={item.uid} item={item} removeFavorite={removeFavorite} type={item.type} />
                     ))
                 ) : (
                     <p>No favorites added yet!</p>
