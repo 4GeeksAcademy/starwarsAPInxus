@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Card = ({ item, addFavorite, removeFavorite, type }) => {
-    
+   
     const handleAddFavorite = () => {
         addFavorite({ ...item, type: type });
     };
@@ -11,6 +11,7 @@ const Card = ({ item, addFavorite, removeFavorite, type }) => {
     const handleRemoveFavorite = () => {
         removeFavorite(item.uid);
     };
+
 
     const imageUrl = `https://starwars-visualguide.com/assets/img/${type === "people" ? "characters" : type}/${item.uid}.jpg`;
 
