@@ -6,15 +6,17 @@ export const FavoritesProvider = ({ children }) => {
     const [favorites, setFavorites] = useState([]);
 
     const addFavorite = (item) => {
-        const isFavorite=favorites.some(element => element.name == item.name)
+        const isFavorite = favorites.some(element => element.name === item.name);
         if (!isFavorite) {
             setFavorites((prevFavorites) => [...prevFavorites, item]);
         }
-       
     };
 
     const removeFavorite = (item) => {
         setFavorites((prevFavorites) => prevFavorites.filter(fav => fav.id !== item.id));
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        localStorage.removeItem(`favorite_${item.id}`);
+        
     };
 
     return (
